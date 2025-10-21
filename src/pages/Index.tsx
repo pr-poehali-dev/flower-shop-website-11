@@ -18,6 +18,7 @@ type Product = {
   image: string;
   category: string;
   occasion: string;
+  colors?: string[];
 };
 
 type CartItem = Product & { quantity: number };
@@ -33,12 +34,24 @@ const Index = () => {
   const [selectedOccasion, setSelectedOccasion] = useState('all');
 
   const products: Product[] = [
-    { id: 1, name: 'Нежный микс', price: 3200, image: 'https://cdn.poehali.dev/projects/ef8f277e-3687-405e-91a1-9f26682c83d0/files/7c3a6170-9aea-4393-82b1-512fafaa6684.jpg', category: 'bouquets', occasion: 'birthday' },
-    { id: 2, name: 'Романтика', price: 4500, image: 'https://cdn.poehali.dev/projects/ef8f277e-3687-405e-91a1-9f26682c83d0/files/5076300d-9972-4827-bed3-c5cc2eb0f469.jpg', category: 'roses', occasion: 'love' },
-    { id: 3, name: 'Весенняя радость', price: 2800, image: 'https://cdn.poehali.dev/projects/ef8f277e-3687-405e-91a1-9f26682c83d0/files/104e74d9-19b1-493c-8f6b-f6239b4c9d03.jpg', category: 'tulips', occasion: 'march8' },
-    { id: 4, name: 'Букет счастья', price: 3800, image: 'https://cdn.poehali.dev/projects/ef8f277e-3687-405e-91a1-9f26682c83d0/files/7c3a6170-9aea-4393-82b1-512fafaa6684.jpg', category: 'bouquets', occasion: 'birthday' },
-    { id: 5, name: 'Пионовый рай', price: 5200, image: 'https://cdn.poehali.dev/projects/ef8f277e-3687-405e-91a1-9f26682c83d0/files/5076300d-9972-4827-bed3-c5cc2eb0f469.jpg', category: 'peonies', occasion: 'wedding' },
-    { id: 6, name: 'Тюльпаны микс', price: 2400, image: 'https://cdn.poehali.dev/projects/ef8f277e-3687-405e-91a1-9f26682c83d0/files/104e74d9-19b1-493c-8f6b-f6239b4c9d03.jpg', category: 'tulips', occasion: 'march8' },
+    { id: 1, name: 'Якобиния Поли', price: 2800, image: 'https://cdn.poehali.dev/projects/ef8f277e-3687-405e-91a1-9f26682c83d0/files/7895b29e-bcaf-4df1-b9b6-cad04b525af0.jpg', category: 'flowering', occasion: 'home' },
+    { id: 2, name: 'Брейния снежная', price: 3200, image: 'https://cdn.poehali.dev/projects/ef8f277e-3687-405e-91a1-9f26682c83d0/files/9c539c37-2a10-484b-9d88-7456b9351678.jpg', category: 'foliage', occasion: 'home' },
+    { id: 3, name: 'Циссус Антарктический', price: 1800, image: 'https://cdn.poehali.dev/projects/ef8f277e-3687-405e-91a1-9f26682c83d0/files/6d243dc0-cbef-4c44-bf71-5e33f689bcbe.jpg', category: 'vines', occasion: 'office' },
+    { id: 4, name: 'Циссус Ромболистный', price: 1900, image: 'https://cdn.poehali.dev/projects/ef8f277e-3687-405e-91a1-9f26682c83d0/files/6d243dc0-cbef-4c44-bf71-5e33f689bcbe.jpg', category: 'vines', occasion: 'office' },
+    { id: 5, name: 'Циссус Разноцветный', price: 2100, image: 'https://cdn.poehali.dev/projects/ef8f277e-3687-405e-91a1-9f26682c83d0/files/6d243dc0-cbef-4c44-bf71-5e33f689bcbe.jpg', category: 'vines', occasion: 'home' },
+    { id: 6, name: 'Циссус Круглолистный', price: 2000, image: 'https://cdn.poehali.dev/projects/ef8f277e-3687-405e-91a1-9f26682c83d0/files/6d243dc0-cbef-4c44-bf71-5e33f689bcbe.jpg', category: 'vines', occasion: 'office' },
+    { id: 7, name: 'Циссус Четырехугольный', price: 2200, image: 'https://cdn.poehali.dev/projects/ef8f277e-3687-405e-91a1-9f26682c83d0/files/6d243dc0-cbef-4c44-bf71-5e33f689bcbe.jpg', category: 'vines', occasion: 'home' },
+    { id: 8, name: 'Циссус Полосатый', price: 2300, image: 'https://cdn.poehali.dev/projects/ef8f277e-3687-405e-91a1-9f26682c83d0/files/6d243dc0-cbef-4c44-bf71-5e33f689bcbe.jpg', category: 'vines', occasion: 'office' },
+    { id: 9, name: 'Циссус Амазонский', price: 2400, image: 'https://cdn.poehali.dev/projects/ef8f277e-3687-405e-91a1-9f26682c83d0/files/6d243dc0-cbef-4c44-bf71-5e33f689bcbe.jpg', category: 'vines', occasion: 'home' },
+    { id: 10, name: 'Циссус Железистоножковый', price: 2500, image: 'https://cdn.poehali.dev/projects/ef8f277e-3687-405e-91a1-9f26682c83d0/files/6d243dc0-cbef-4c44-bf71-5e33f689bcbe.jpg', category: 'vines', occasion: 'office' },
+    { id: 11, name: 'Лантана Красная', price: 2600, image: 'https://cdn.poehali.dev/projects/ef8f277e-3687-405e-91a1-9f26682c83d0/files/93b7ff8b-d740-4077-8959-3fe907ff6ec1.jpg', category: 'flowering', occasion: 'home', colors: ['#DC2626', '#F97316', '#FBBF24', '#A855F7', '#EC4899'] },
+    { id: 12, name: 'Лантана Оранжевая', price: 2600, image: 'https://cdn.poehali.dev/projects/ef8f277e-3687-405e-91a1-9f26682c83d0/files/93b7ff8b-d740-4077-8959-3fe907ff6ec1.jpg', category: 'flowering', occasion: 'home', colors: ['#DC2626', '#F97316', '#FBBF24', '#A855F7', '#EC4899'] },
+    { id: 13, name: 'Лантана Желтая', price: 2600, image: 'https://cdn.poehali.dev/projects/ef8f277e-3687-405e-91a1-9f26682c83d0/files/93b7ff8b-d740-4077-8959-3fe907ff6ec1.jpg', category: 'flowering', occasion: 'home', colors: ['#DC2626', '#F97316', '#FBBF24', '#A855F7', '#EC4899'] },
+    { id: 14, name: 'Лантана Фиолетовая', price: 2600, image: 'https://cdn.poehali.dev/projects/ef8f277e-3687-405e-91a1-9f26682c83d0/files/93b7ff8b-d740-4077-8959-3fe907ff6ec1.jpg', category: 'flowering', occasion: 'home', colors: ['#DC2626', '#F97316', '#FBBF24', '#A855F7', '#EC4899'] },
+    { id: 15, name: 'Лантана Розовая', price: 2600, image: 'https://cdn.poehali.dev/projects/ef8f277e-3687-405e-91a1-9f26682c83d0/files/93b7ff8b-d740-4077-8959-3fe907ff6ec1.jpg', category: 'flowering', occasion: 'home', colors: ['#DC2626', '#F97316', '#FBBF24', '#A855F7', '#EC4899'] },
+    { id: 16, name: 'Клеродендрум Альбомаргината', price: 3400, image: 'https://cdn.poehali.dev/projects/ef8f277e-3687-405e-91a1-9f26682c83d0/files/2dfa965e-f005-40fc-b698-5063348d538e.jpg', category: 'flowering', occasion: 'home', colors: ['#FFFFFF', '#86EFAC', '#60A5FA'] },
+    { id: 17, name: 'Клеродендрум Томсона', price: 3400, image: 'https://cdn.poehali.dev/projects/ef8f277e-3687-405e-91a1-9f26682c83d0/files/2dfa965e-f005-40fc-b698-5063348d538e.jpg', category: 'flowering', occasion: 'home', colors: ['#FFFFFF', '#86EFAC', '#60A5FA'] },
+    { id: 18, name: 'Клеродендрум Голубой', price: 3400, image: 'https://cdn.poehali.dev/projects/ef8f277e-3687-405e-91a1-9f26682c83d0/files/2dfa965e-f005-40fc-b698-5063348d538e.jpg', category: 'flowering', occasion: 'home', colors: ['#FFFFFF', '#86EFAC', '#60A5FA'] },
   ];
 
   const filteredProducts = products.filter(product => {
@@ -371,26 +384,23 @@ const Index = () => {
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="all">Все категории</SelectItem>
-                    <SelectItem value="bouquets">Букеты</SelectItem>
-                    <SelectItem value="roses">Розы</SelectItem>
-                    <SelectItem value="tulips">Тюльпаны</SelectItem>
-                    <SelectItem value="peonies">Пионы</SelectItem>
+                    <SelectItem value="flowering">Цветущие</SelectItem>
+                    <SelectItem value="foliage">Декоративно-лиственные</SelectItem>
+                    <SelectItem value="vines">Лианы</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
 
               <div className="space-y-2">
-                <Label>Повод</Label>
+                <Label>Назначение</Label>
                 <Select value={selectedOccasion} onValueChange={setSelectedOccasion}>
                   <SelectTrigger>
                     <SelectValue placeholder="Все поводы" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="all">Все поводы</SelectItem>
-                    <SelectItem value="birthday">День рождения</SelectItem>
-                    <SelectItem value="wedding">Свадьба</SelectItem>
-                    <SelectItem value="march8">8 марта</SelectItem>
-                    <SelectItem value="love">Романтика</SelectItem>
+                    <SelectItem value="all">Все назначения</SelectItem>
+                    <SelectItem value="home">Для дома</SelectItem>
+                    <SelectItem value="office">Для офиса</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -435,7 +445,21 @@ const Index = () => {
                       />
                     </Button>
                   </div>
-                  <p className="text-2xl font-bold text-primary">{product.price} ₽</p>
+                  <div className="bg-foreground/5 px-3 py-2 rounded-lg inline-block mb-2">
+                    <p className="text-2xl font-bold text-foreground">{product.price} ₽</p>
+                  </div>
+                  {product.colors && product.colors.length > 0 && (
+                    <div className="flex gap-2 mt-3">
+                      {product.colors.map((color, idx) => (
+                        <div
+                          key={idx}
+                          className="w-6 h-6 rounded-full border-2 border-border cursor-pointer hover:scale-110 transition-transform"
+                          style={{ backgroundColor: color }}
+                          title={`Цвет ${idx + 1}`}
+                        />
+                      ))}
+                    </div>
+                  )}
                 </CardContent>
                 <CardFooter className="p-4 pt-0">
                   <Button
