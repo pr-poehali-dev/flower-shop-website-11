@@ -164,7 +164,7 @@ const Index = () => {
   const progressToNextLevel = loyaltyPoints >= 5000 ? 100 : loyaltyPoints >= 2500 ? ((loyaltyPoints - 2500) / 2500) * 100 : (loyaltyPoints / 2500) * 100;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-secondary/20">
+    <div className="min-h-screen bg-gradient-to-br from-background via-primary/25 to-secondary/40">
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container flex h-16 items-center justify-between px-4">
           <div className="flex items-center gap-2">
@@ -208,7 +208,7 @@ const Index = () => {
                   
                   <TabsContent value="loyalty" className="space-y-6">
                     <div className="space-y-4">
-                      <div className="bg-gradient-to-br from-primary/20 via-secondary/15 to-accent/10 p-6 rounded-lg shadow-inner">
+                      <div className="bg-gradient-to-br from-primary/40 via-secondary/30 to-accent/25 p-6 rounded-lg shadow-inner">
                         <div className="flex items-center justify-between mb-2">
                           <span className="text-sm text-muted-foreground">Ваш статус</span>
                           <Badge variant="secondary">{loyaltyLevel}</Badge>
@@ -387,7 +387,7 @@ const Index = () => {
       </header>
 
       <section id="home" className="relative py-20 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/10 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/30 via-transparent to-secondary/30 pointer-events-none" />
         <div className="container px-4 relative z-10">
           <div className="max-w-3xl mx-auto text-center space-y-6">
             <h2 className="text-5xl md:text-6xl font-bold text-foreground leading-tight">
@@ -408,7 +408,7 @@ const Index = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16 max-w-5xl mx-auto">
-            <Card className="text-center hover-scale border-0 bg-gradient-to-br from-card via-card to-primary/5 shadow-lg">
+            <Card className="text-center hover-scale border-0 bg-gradient-to-br from-card via-primary/10 to-primary/20 shadow-lg">
               <CardContent className="pt-6 space-y-4">
                 <div className="w-16 h-16 mx-auto bg-gradient-to-br from-primary/20 to-primary/5 rounded-full flex items-center justify-center shadow-inner">
                   <Icon name="Flower" size={32} className="text-primary" />
@@ -418,7 +418,7 @@ const Index = () => {
               </CardContent>
             </Card>
 
-            <Card className="text-center hover-scale border-0 bg-gradient-to-br from-card via-card to-secondary/10 shadow-lg">
+            <Card className="text-center hover-scale border-0 bg-gradient-to-br from-card via-secondary/15 to-secondary/30 shadow-lg">
               <CardContent className="pt-6 space-y-4">
                 <div className="w-16 h-16 mx-auto bg-gradient-to-br from-secondary/30 to-secondary/10 rounded-full flex items-center justify-center shadow-inner">
                   <Icon name="Truck" size={32} className="text-primary" />
@@ -428,7 +428,7 @@ const Index = () => {
               </CardContent>
             </Card>
 
-            <Card className="text-center hover-scale border-0 bg-gradient-to-br from-card via-card to-accent/10 shadow-lg">
+            <Card className="text-center hover-scale border-0 bg-gradient-to-br from-card via-accent/20 to-accent/35 shadow-lg">
               <CardContent className="pt-6 space-y-4">
                 <div className="w-16 h-16 mx-auto bg-gradient-to-br from-accent/50 to-accent/20 rounded-full flex items-center justify-center shadow-inner">
                   <Icon name="Gift" size={32} className="text-primary" />
