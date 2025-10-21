@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -28,10 +28,35 @@ const Index = () => {
   const [favorites, setFavorites] = useState<number[]>([]);
   const [showCart, setShowCart] = useState(false);
   const [showAccount, setShowAccount] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
   const [loyaltyPoints, setLoyaltyPoints] = useState(1250);
   const [priceRange, setPriceRange] = useState([0, 10000]);
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [selectedOccasion, setSelectedOccasion] = useState('all');
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const shouldBeDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
+    
+    setIsDarkMode(shouldBeDark);
+    if (shouldBeDark) {
+      document.documentElement.classList.add('dark');
+    }
+  }, []);
+
+  const toggleTheme = () => {
+    const newTheme = !isDarkMode;
+    setIsDarkMode(newTheme);
+    
+    if (newTheme) {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+    }
+  };
 
   const products: Product[] = [
     { id: 1, name: 'Якобиния Поли', price: 2800, image: 'https://cdn.poehali.dev/projects/ef8f277e-3687-405e-91a1-9f26682c83d0/files/7895b29e-bcaf-4df1-b9b6-cad04b525af0.jpg', category: 'flowering', occasion: 'home' },
@@ -119,6 +144,15 @@ const Index = () => {
           </nav>
 
           <div className="flex items-center gap-2">
+            <Button 
+              variant="ghost" 
+              size="icon"
+              onClick={toggleTheme}
+              title={isDarkMode ? 'Светлая тема' : 'Темная тема'}
+            >
+              <Icon name={isDarkMode ? 'Sun' : 'Moon'} size={20} />
+            </Button>
+            
             <Sheet open={showAccount} onOpenChange={setShowAccount}>
               <SheetTrigger asChild>
                 <Button variant="ghost" size="icon">
