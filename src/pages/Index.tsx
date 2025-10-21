@@ -128,7 +128,7 @@ const Index = () => {
   const progressToNextLevel = loyaltyPoints >= 5000 ? 100 : loyaltyPoints >= 2500 ? ((loyaltyPoints - 2500) / 2500) * 100 : (loyaltyPoints / 2500) * 100;
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-gradient-to-br from-background via-background to-secondary/20">
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container flex h-16 items-center justify-between px-4">
           <div className="flex items-center gap-2">
@@ -172,12 +172,12 @@ const Index = () => {
                   
                   <TabsContent value="loyalty" className="space-y-6">
                     <div className="space-y-4">
-                      <div className="bg-gradient-to-br from-primary/20 to-secondary/20 p-6 rounded-lg">
+                      <div className="bg-gradient-to-br from-primary/20 via-secondary/15 to-accent/10 p-6 rounded-lg shadow-inner">
                         <div className="flex items-center justify-between mb-2">
                           <span className="text-sm text-muted-foreground">Ваш статус</span>
                           <Badge variant="secondary">{loyaltyLevel}</Badge>
                         </div>
-                        <div className="text-3xl font-bold mb-1">{loyaltyPoints} баллов</div>
+                        <div className="text-3xl font-bold mb-1 bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">{loyaltyPoints} баллов</div>
                         <p className="text-xs text-muted-foreground">1 балл = 1 рубль</p>
                       </div>
 
@@ -351,7 +351,8 @@ const Index = () => {
       </header>
 
       <section id="home" className="relative py-20 overflow-hidden">
-        <div className="container px-4">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/10 pointer-events-none" />
+        <div className="container px-4 relative z-10">
           <div className="max-w-3xl mx-auto text-center space-y-6">
             <h2 className="text-5xl md:text-6xl font-bold text-foreground leading-tight">
               Свежие цветы с доставкой
@@ -371,9 +372,9 @@ const Index = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16 max-w-5xl mx-auto">
-            <Card className="text-center hover-scale">
+            <Card className="text-center hover-scale border-0 bg-gradient-to-br from-card via-card to-primary/5 shadow-lg">
               <CardContent className="pt-6 space-y-4">
-                <div className="w-16 h-16 mx-auto bg-primary/10 rounded-full flex items-center justify-center">
+                <div className="w-16 h-16 mx-auto bg-gradient-to-br from-primary/20 to-primary/5 rounded-full flex items-center justify-center shadow-inner">
                   <Icon name="Flower" size={32} className="text-primary" />
                 </div>
                 <h3 className="font-semibold text-lg">Свежие цветы</h3>
@@ -381,9 +382,9 @@ const Index = () => {
               </CardContent>
             </Card>
 
-            <Card className="text-center hover-scale">
+            <Card className="text-center hover-scale border-0 bg-gradient-to-br from-card via-card to-secondary/10 shadow-lg">
               <CardContent className="pt-6 space-y-4">
-                <div className="w-16 h-16 mx-auto bg-secondary/30 rounded-full flex items-center justify-center">
+                <div className="w-16 h-16 mx-auto bg-gradient-to-br from-secondary/30 to-secondary/10 rounded-full flex items-center justify-center shadow-inner">
                   <Icon name="Truck" size={32} className="text-primary" />
                 </div>
                 <h3 className="font-semibold text-lg">Быстрая доставка</h3>
@@ -391,9 +392,9 @@ const Index = () => {
               </CardContent>
             </Card>
 
-            <Card className="text-center hover-scale">
+            <Card className="text-center hover-scale border-0 bg-gradient-to-br from-card via-card to-accent/10 shadow-lg">
               <CardContent className="pt-6 space-y-4">
-                <div className="w-16 h-16 mx-auto bg-accent/50 rounded-full flex items-center justify-center">
+                <div className="w-16 h-16 mx-auto bg-gradient-to-br from-accent/50 to-accent/20 rounded-full flex items-center justify-center shadow-inner">
                   <Icon name="Gift" size={32} className="text-primary" />
                 </div>
                 <h3 className="font-semibold text-lg">Подарок в каждый заказ</h3>
@@ -404,9 +405,10 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="catalog" className="py-16 bg-muted/30">
-        <div className="container px-4">
-          <h2 className="text-4xl font-bold text-center mb-12">Каталог цветов</h2>
+      <section id="catalog" className="py-16 relative">
+        <div className="absolute inset-0 bg-gradient-to-b from-muted/20 via-muted/10 to-transparent pointer-events-none" />
+        <div className="container px-4 relative z-10">
+          <h2 className="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-foreground via-foreground to-foreground/70 bg-clip-text text-transparent">Каталог цветов</h2>
 
           <div className="mb-8 space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -455,7 +457,7 @@ const Index = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredProducts.map(product => (
-              <Card key={product.id} className="overflow-hidden hover-scale group">
+              <Card key={product.id} className="overflow-hidden hover-scale group border-0 bg-gradient-to-br from-card to-card/80 shadow-md hover:shadow-xl transition-shadow">
                 <div className="aspect-square overflow-hidden">
                   <img
                     src={product.image}
@@ -479,8 +481,8 @@ const Index = () => {
                       />
                     </Button>
                   </div>
-                  <div className="bg-foreground/5 px-3 py-2 rounded-lg inline-block mb-2">
-                    <p className="text-2xl font-bold text-foreground">{product.price} ₽</p>
+                  <div className="bg-gradient-to-r from-primary/10 to-secondary/10 px-3 py-2 rounded-lg inline-block mb-2">
+                    <p className="text-2xl font-bold bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent">{product.price} ₽</p>
                   </div>
                   {product.colors && product.colors.length > 0 && (
                     <div className="flex gap-2 mt-3">
@@ -513,8 +515,8 @@ const Index = () => {
         </div>
       </section>
 
-      <footer className="border-t py-12 mt-16">
-        <div className="container px-4">
+      <footer className="border-t py-12 mt-16 bg-gradient-to-br from-muted/10 to-transparent">
+        <div className="container px-4 relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
               <div className="flex items-center gap-2 mb-4">
