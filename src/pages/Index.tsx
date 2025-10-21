@@ -24,6 +24,7 @@ type CartItem = Product & { quantity: number };
 
 const Index = () => {
   const [cart, setCart] = useState<CartItem[]>([]);
+  const [favorites, setFavorites] = useState<number[]>([]);
   const [showCart, setShowCart] = useState(false);
   const [showAccount, setShowAccount] = useState(false);
   const [loyaltyPoints, setLoyaltyPoints] = useState(1250);
@@ -73,6 +74,16 @@ const Index = () => {
     ));
   };
 
+  const toggleFavorite = (productId: number) => {
+    setFavorites(prev => 
+      prev.includes(productId) 
+        ? prev.filter(id => id !== productId)
+        : [...prev, productId]
+    );
+  };
+
+  const favoriteProducts = products.filter(product => favorites.includes(product.id));
+
   const totalPrice = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
   const loyaltyLevel = loyaltyPoints >= 5000 ? 'Золотой' : loyaltyPoints >= 2500 ? 'Серебряный' : 'Бронзовый';
   const nextLevelPoints = loyaltyPoints >= 5000 ? 0 : loyaltyPoints >= 2500 ? 5000 - loyaltyPoints : 2500 - loyaltyPoints;
@@ -106,8 +117,9 @@ const Index = () => {
                   <SheetTitle>Личный кабинет</SheetTitle>
                 </SheetHeader>
                 <Tabs defaultValue="loyalty" className="mt-6">
-                  <TabsList className="grid w-full grid-cols-2">
+                  <TabsList className="grid w-full grid-cols-3">
                     <TabsTrigger value="loyalty">Лояльность</TabsTrigger>
+                    <TabsTrigger value="favorites">Избранное</TabsTrigger>
                     <TabsTrigger value="profile">Профиль</TabsTrigger>
                   </TabsList>
                   
@@ -147,6 +159,45 @@ const Index = () => {
                         </div>
                       </div>
                     </div>
+                  </TabsContent>
+
+                  <TabsContent value="favorites" className="space-y-4">
+                    {favoriteProducts.length === 0 ? (
+                      <div className="text-center py-12 text-muted-foreground">
+                        <Icon name="Heart" size={48} className="mx-auto mb-4 opacity-30" />
+                        <p>Вы пока ничего не добавили в избранное</p>
+                      </div>
+                    ) : (
+                      <div className="space-y-4">
+                        {favoriteProducts.map(product => (
+                          <div key={product.id} className="flex gap-4 pb-4 border-b">
+                            <img src={product.image} alt={product.name} className="w-20 h-20 object-cover rounded-lg" />
+                            <div className="flex-1">
+                              <h4 className="font-medium">{product.name}</h4>
+                              <p className="text-sm text-muted-foreground">{product.price} ₽</p>
+                              <Button
+                                size="sm"
+                                className="mt-2"
+                                onClick={() => {
+                                  addToCart(product);
+                                  setShowCart(true);
+                                }}
+                              >
+                                <Icon name="ShoppingCart" size={14} className="mr-1" />
+                                В корзину
+                              </Button>
+                            </div>
+                            <Button
+                              variant="ghost"
+                              size="icon"
+                              onClick={() => toggleFavorite(product.id)}
+                            >
+                              <Icon name="Heart" size={18} className="fill-current text-primary" />
+                            </Button>
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   </TabsContent>
 
                   <TabsContent value="profile" className="space-y-4">
@@ -369,7 +420,21 @@ const Index = () => {
                   />
                 </div>
                 <CardContent className="p-4">
-                  <h3 className="font-semibold text-lg mb-1">{product.name}</h3>
+                  <div className="flex items-start justify-between mb-1">
+                    <h3 className="font-semibold text-lg flex-1">{product.name}</h3>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="h-8 w-8 -mt-1"
+                      onClick={() => toggleFavorite(product.id)}
+                    >
+                      <Icon 
+                        name="Heart" 
+                        size={20} 
+                        className={favorites.includes(product.id) ? 'fill-current text-primary' : ''}
+                      />
+                    </Button>
+                  </div>
                   <p className="text-2xl font-bold text-primary">{product.price} ₽</p>
                 </CardContent>
                 <CardFooter className="p-4 pt-0">
