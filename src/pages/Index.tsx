@@ -164,7 +164,7 @@ const Index = () => {
   const progressToNextLevel = loyaltyPoints >= 5000 ? 100 : loyaltyPoints >= 2500 ? ((loyaltyPoints - 2500) / 2500) * 100 : (loyaltyPoints / 2500) * 100;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-primary/25 to-secondary/40">
+    <div className="min-h-screen bg-gradient-to-br from-background via-primary/10 to-secondary/15">
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container flex h-16 items-center justify-between px-4">
           <div className="flex items-center gap-2">
@@ -208,7 +208,7 @@ const Index = () => {
                   
                   <TabsContent value="loyalty" className="space-y-6">
                     <div className="space-y-4">
-                      <div className="bg-gradient-to-br from-primary/40 via-secondary/30 to-accent/25 p-6 rounded-lg shadow-inner">
+                      <div className="bg-gradient-to-br from-primary/25 via-secondary/20 to-accent/15 p-6 rounded-lg shadow-inner">
                         <div className="flex items-center justify-between mb-2">
                           <span className="text-sm text-muted-foreground">Ваш статус</span>
                           <Badge variant="secondary">{loyaltyLevel}</Badge>
@@ -387,7 +387,7 @@ const Index = () => {
       </header>
 
       <section id="home" className="relative py-20 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/30 via-transparent to-secondary/30 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/15 via-transparent to-secondary/15 pointer-events-none" />
         <div className="container px-4 relative z-10">
           <div className="max-w-3xl mx-auto text-center space-y-6">
             <h2 className="text-5xl md:text-6xl font-bold text-foreground leading-tight">
@@ -408,7 +408,7 @@ const Index = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16 max-w-5xl mx-auto">
-            <Card className="text-center hover-scale border-0 bg-gradient-to-br from-card via-primary/10 to-primary/20 shadow-lg">
+            <Card className="text-center hover-scale border-0 bg-gradient-to-br from-card via-primary/5 to-primary/10 shadow-lg">
               <CardContent className="pt-6 space-y-4">
                 <div className="w-16 h-16 mx-auto bg-gradient-to-br from-primary/20 to-primary/5 rounded-full flex items-center justify-center shadow-inner">
                   <Icon name="Flower" size={32} className="text-primary" />
@@ -418,7 +418,7 @@ const Index = () => {
               </CardContent>
             </Card>
 
-            <Card className="text-center hover-scale border-0 bg-gradient-to-br from-card via-secondary/15 to-secondary/30 shadow-lg">
+            <Card className="text-center hover-scale border-0 bg-gradient-to-br from-card via-secondary/5 to-secondary/15 shadow-lg">
               <CardContent className="pt-6 space-y-4">
                 <div className="w-16 h-16 mx-auto bg-gradient-to-br from-secondary/30 to-secondary/10 rounded-full flex items-center justify-center shadow-inner">
                   <Icon name="Truck" size={32} className="text-primary" />
@@ -428,7 +428,7 @@ const Index = () => {
               </CardContent>
             </Card>
 
-            <Card className="text-center hover-scale border-0 bg-gradient-to-br from-card via-accent/20 to-accent/35 shadow-lg">
+            <Card className="text-center hover-scale border-0 bg-gradient-to-br from-card via-accent/5 to-accent/15 shadow-lg">
               <CardContent className="pt-6 space-y-4">
                 <div className="w-16 h-16 mx-auto bg-gradient-to-br from-accent/50 to-accent/20 rounded-full flex items-center justify-center shadow-inner">
                   <Icon name="Gift" size={32} className="text-primary" />
@@ -572,58 +572,136 @@ const Index = () => {
         </div>
       </section>
 
-      <footer className="border-t py-12 mt-16 bg-gradient-to-br from-muted/10 to-transparent">
-        <div className="container px-4 relative z-10">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <section className="py-16 bg-gradient-to-br from-muted/5 to-transparent">
+        <div className="container px-4">
+          <h2 className="text-3xl font-bold text-center mb-12">Часто задаваемые вопросы</h2>
+          <div className="max-w-3xl mx-auto space-y-4">
+            <Card className="hover:shadow-md transition-shadow">
+              <CardContent className="p-6">
+                <h3 className="font-semibold mb-2 flex items-center gap-2">
+                  <Icon name="HelpCircle" size={20} className="text-primary" />
+                  Как долго цветы остаются свежими?
+                </h3>
+                <p className="text-sm text-muted-foreground pl-7">
+                  При правильном уходе наши цветы радуют от 7 до 14 дней. К каждому букету прилагается инструкция по уходу.
+                </p>
+              </CardContent>
+            </Card>
+            
+            <Card className="hover:shadow-md transition-shadow">
+              <CardContent className="p-6">
+                <h3 className="font-semibold mb-2 flex items-center gap-2">
+                  <Icon name="HelpCircle" size={20} className="text-primary" />
+                  Можно ли заказать доставку на определённое время?
+                </h3>
+                <p className="text-sm text-muted-foreground pl-7">
+                  Да, при оформлении заказа вы можете выбрать удобный временной интервал доставки.
+                </p>
+              </CardContent>
+            </Card>
+            
+            <Card className="hover:shadow-md transition-shadow">
+              <CardContent className="p-6">
+                <h3 className="font-semibold mb-2 flex items-center gap-2">
+                  <Icon name="HelpCircle" size={20} className="text-primary" />
+                  Есть ли гарантия на цветы?
+                </h3>
+                <p className="text-sm text-muted-foreground pl-7">
+                  Мы гарантируем свежесть и качество. Если что-то не так — заменим букет бесплатно в течение 24 часов.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="hover:shadow-md transition-shadow">
+              <CardContent className="p-6">
+                <h3 className="font-semibold mb-2 flex items-center gap-2">
+                  <Icon name="HelpCircle" size={20} className="text-primary" />
+                  Какие способы оплаты доступны?
+                </h3>
+                <p className="text-sm text-muted-foreground pl-7 mb-3">
+                  Мы принимаем все удобные способы оплаты:
+                </p>
+                <div className="flex flex-wrap gap-3 pl-7">
+                  <Badge variant="outline" className="flex items-center gap-2">
+                    <Icon name="CreditCard" size={14} />
+                    Банковские карты
+                  </Badge>
+                  <Badge variant="outline" className="flex items-center gap-2">
+                    <Icon name="Smartphone" size={14} />
+                    СБП
+                  </Badge>
+                  <Badge variant="outline" className="flex items-center gap-2">
+                    <Icon name="Wallet" size={14} />
+                    Наличные
+                  </Badge>
+                  <Badge variant="outline" className="flex items-center gap-2">
+                    <Icon name="Gift" size={14} />
+                    Бонусы
+                  </Badge>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      <footer className="border-t py-12 mt-8 bg-gradient-to-br from-muted/5 to-transparent">
+        <div className="container px-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
               <div className="flex items-center gap-2 mb-4">
                 <Icon name="Flower2" size={24} className="text-primary" />
                 <h3 className="font-bold text-lg">Тsyetochnitsa</h3>
               </div>
-              <p className="text-sm text-muted-foreground">Живые цветы с душой и заботой</p>
-            </div>
-            
-            <div>
-              <h4 className="font-semibold mb-4">Каталог</h4>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><a href="#" className="hover:text-foreground transition-colors">Букеты</a></li>
-                <li><a href="#" className="hover:text-foreground transition-colors">Розы</a></li>
-                <li><a href="#" className="hover:text-foreground transition-colors">Тюльпаны</a></li>
-                <li><a href="#" className="hover:text-foreground transition-colors">Пионы</a></li>
-              </ul>
+              <p className="text-sm text-muted-foreground mb-4">Живые цветы с душой и заботой</p>
+              <div className="flex gap-3">
+                <Button variant="outline" size="icon" className="h-8 w-8">
+                  <Icon name="Instagram" size={16} />
+                </Button>
+                <Button variant="outline" size="icon" className="h-8 w-8">
+                  <Icon name="Facebook" size={16} />
+                </Button>
+                <Button variant="outline" size="icon" className="h-8 w-8">
+                  <Icon name="MessageCircle" size={16} />
+                </Button>
+              </div>
             </div>
 
             <div>
               <h4 className="font-semibold mb-4">Информация</h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li><a href="#" className="hover:text-foreground transition-colors">О нас</a></li>
-                <li><a href="#" className="hover:text-foreground transition-colors">Доставка</a></li>
-                <li><a href="#" className="hover:text-foreground transition-colors">Оплата</a></li>
-                <li><a href="#" className="hover:text-foreground transition-colors">Контакты</a></li>
+                <li><a href="#" className="hover:text-foreground transition-colors">Доставка и оплата</a></li>
+                <li><a href="#" className="hover:text-foreground transition-colors">Возврат и обмен</a></li>
+                <li><a href="#" className="hover:text-foreground transition-colors">Программа лояльности</a></li>
               </ul>
             </div>
 
             <div>
               <h4 className="font-semibold mb-4">Контакты</h4>
-              <ul className="space-y-2 text-sm text-muted-foreground">
+              <ul className="space-y-3 text-sm text-muted-foreground">
                 <li className="flex items-center gap-2">
-                  <Icon name="Phone" size={16} />
+                  <Icon name="Phone" size={16} className="text-primary" />
                   +7 (999) 123-45-67
                 </li>
                 <li className="flex items-center gap-2">
-                  <Icon name="Mail" size={16} />
+                  <Icon name="Mail" size={16} className="text-primary" />
                   info@tsyetochnitsa.ru
                 </li>
                 <li className="flex items-center gap-2">
-                  <Icon name="MapPin" size={16} />
+                  <Icon name="MapPin" size={16} className="text-primary" />
                   Москва, ул. Цветочная, 15
+                </li>
+                <li className="flex items-center gap-2">
+                  <Icon name="Clock" size={16} className="text-primary" />
+                  Ежедневно 9:00 - 21:00
                 </li>
               </ul>
             </div>
           </div>
           
           <div className="border-t mt-8 pt-8 text-center text-sm text-muted-foreground">
-            © 2024 Тsyetochnitsa. Все права защищены.
+            <p>© 2024 Тsyetochnitsa. Все права защищены.</p>
           </div>
         </div>
       </footer>
